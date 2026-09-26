@@ -94,6 +94,15 @@
                 print "<p>City: $city</p>\n";
                 print "<p>Section: $section</p>\n";
             ?>
+
+            <?php 
+                $filename = 'patrons.txt';
+                $fp = fopen($filename, 'a');
+
+                $patron_data = "";
+                fwrite($fp, $patron_data);
+                fclose($fp);
+            ?>
         </div>
     </main>
 </body>
