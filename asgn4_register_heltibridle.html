@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>King Library - Registration</title>
+    <link rel="stylesheet" href="asgn3_style.css">
+</head>
+<body>
+    <header>
+        <div id="logo">
+            <img src="KingLibLogo.jpg" alt="King Library: Where information is at your command">
+        </div>
+    </header>
+    <main>
+        <div id="registration">
+            <p>Please sign up</p>
+            <form action="asgn3_register_heltibridle.php" method="post">
+                <p>
+                    <label for="firstname">First Name:</label><br>
+                    <input type="text" name="firstname" id="firstname" size="30">
+                </p>
+                <p>
+                    <label for="lastname">Last Name:</label><br>
+                    <input type="text" name="lastname" id="lastname" size="30">
+                </p>
+                <p>
+                    <label for="email">Email:</label><br>
+                    <input type="text" name="email" id="email" size="40">
+                </p>
+                <p>
+                    <label for="birthday">Birth Year:</label><br>
+                    <input type="text" name="birthday" id="birthday" size="4">
+                </p>
+                <p>
+                    <label for="city">City of Residence:</label><br>
+                    <select name="city" id="city" size="1">
+                        <option value="">-</option>
+                        <option value="Chicago">Chicago</option>
+                        <option value="Detroit">Detroit</option>
+                        <option value="Toronto">Toronto</option>
+                    </select>
+                </p>
+                <p>
+                    <input type="submit" value="Submit Information">
+                </p>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
