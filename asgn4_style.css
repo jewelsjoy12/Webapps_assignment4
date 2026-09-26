@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin:0;
+    padding:0;
+}
+
+#logo {
+    position:absolute;
+    top: 0px;
+    left: 0px;
+    width: 800px;
+}
+
+body {
+    background-color: #F0E68C;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+    margin-left:10px;
+    margin-top:100px;
+}
+
+#registration {
+    background-color: #E6E6FA;
+    padding: 10px;
+    width: 380px;
+}
+
+#thanks {
+    font-size:1em;
+}
