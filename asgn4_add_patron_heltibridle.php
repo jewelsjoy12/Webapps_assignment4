@@ -105,7 +105,7 @@
                 fclose($fp);
             ?>
             <p>
-                For Admin Use Only: <span style="text-decoration: underline; color: blue;">View Patrons</span>
+                For Admin Use Only: <span style="text-decoration: underline; color: blue;"><a href="asgn4_view_patrons_heltibridle.php">View Patrons</a></span>
             </p>
         </div>
     </main>
