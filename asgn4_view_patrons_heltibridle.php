@@ -13,7 +13,7 @@
         </div>
     </header>
     <main>
-        <div id="registration"> 
+        <div class="patron-view"> 
             <h1>View Patrons</h1>
 
             <table border = '1'>
