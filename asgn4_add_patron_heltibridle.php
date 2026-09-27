@@ -99,7 +99,8 @@
                 $filename = 'patrons.txt';
                 $fp = fopen($filename, 'a');
 
-                $patron_data = "";
+                $patron_data = $lastname.'|'.$firstname.'|'.$email.'|'.$city.'|'.$birth.'|'."\n";
+
                 fwrite($fp, $patron_data);
                 fclose($fp);
             ?>
