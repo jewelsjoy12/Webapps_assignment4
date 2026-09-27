@@ -16,10 +16,31 @@
         <div id="registration"> 
             <h1>View Patrons</h1>
             <?php 
-                $filename = 'patrons.txt';
-                $fp = fopen($filename, 'a');
+            $display = "";
+            $cntr = 0;
 
-                fclose($fp);
+            $filename = 'patrons.txt';
+            $fp = fopen($filename, 'r');
+
+            while(true) {
+                $line = fgets($fp);
+
+                if (feof($fp)) {
+                    break;
+                }
+
+                $cntr++;
+                $even_lines = $cntr % 2;
+
+                if ($even_lines == 0) {
+                    $style = "style='background-color: #FFFFCC;'";
+                } else {
+                    $style = "style='background-color: white;'";
+                }
+
+                list($lastname, $firstname, $email, $city, $birth) = explode('|', $line);
+            }
+            fclose($fp);
             ?>
         </div>
     </main>
