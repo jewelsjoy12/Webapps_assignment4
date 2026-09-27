@@ -15,33 +15,49 @@
     <main>
         <div id="registration"> 
             <h1>View Patrons</h1>
-            <?php 
-            $display = "";
-            $cntr = 0;
 
-            $filename = 'patrons.txt';
-            $fp = fopen($filename, 'r');
+            <table border = '1'>
+                <tr>
+                    <th>Last Name</th>
+                    <th>First Name</th>
+                    <th>Email</th>
+                    <th>City</th>
+                    <th>Birth Year</th>
+                </tr>
 
-            while(true) {
-                $line = fgets($fp);
+                <?php
+                $display = "";
+                $cntr = 0;
+                $filename = 'patrons.txt';
+                $fp = fopen($filename, 'r');
+                while(true) {
+                    $line = fgets($fp);
+                    if (feof($fp)) {
+                        break;
+                    }
+                    $cntr++;
+                    $even_lines = $cntr % 2;
+                    if ($even_lines == 0) {
+                        $style = "style='background-color: #FFFFCC;'";
+                    } else {
+                        $style = "style='background-color: white;'";
+                    }
+                    list($lastname, $firstname, $email, $city, $birth) = explode('|', $line);
 
-                if (feof($fp)) {
-                    break;
+                    $display .="<tr $style>";
+                        $display .= "<td>".$lastname."</td>";
+                        $display .= "<td>".$firstname."</td>";
+                        $display .= "<td>".$email."</td>";
+                        $display .= "<td>".$city."</td>";
+                        $display .= "<td>".$birth."</td>";
+                    $display .="</tr>\n";
+
                 }
+                fclose($fp);
 
-                $cntr++;
-                $even_lines = $cntr % 2;
-
-                if ($even_lines == 0) {
-                    $style = "style='background-color: #FFFFCC;'";
-                } else {
-                    $style = "style='background-color: white;'";
-                }
-
-                list($lastname, $firstname, $email, $city, $birth) = explode('|', $line);
-            }
-            fclose($fp);
-            ?>
+                print $display;
+                ?>
+            </table>
         </div>
     </main>
 </body>
