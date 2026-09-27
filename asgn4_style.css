@@ -7,16 +7,12 @@ html, body {
     padding:0;
 }
 
-#logo {
-    position:absolute;
-    top: 0px;
-    left: 0px;
-    width: 800px;
+html {
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
     background-color: #F0E68C;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 main {
@@ -24,10 +20,18 @@ main {
     margin-top:100px;
 }
 
-#registration {
+#logo {
+    position:absolute;
+    top: 0px;
+    left: 0px;
+    width: 800px;
+}
+
+#registration, .patron-view {
     background-color: #E6E6FA;
-    padding: 10px;
-    width: 380px;
+    padding-left: 10px;
+    padding-right: 50px;
+    display: inline-block;
 }
 
 #thanks {
