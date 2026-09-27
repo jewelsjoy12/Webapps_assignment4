@@ -104,6 +104,9 @@
                 fwrite($fp, $patron_data);
                 fclose($fp);
             ?>
+            <p>
+                For Admin Use Only: <span style="text-decoration: underline; color: blue;">View Patrons</span>
+            </p>
         </div>
     </main>
 </body>
