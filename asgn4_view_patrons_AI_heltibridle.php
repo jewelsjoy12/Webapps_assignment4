@@ -26,23 +26,42 @@
                 </tr>
 
                 <?php
-                $display = "";
-                $cntr = 0;
                 $filename = 'patrons.txt';
+                $patrons = []; // will hold one entry per patron
+
+                // Step 1: Read every line into the array
                 $fp = fopen($filename, 'r');
-                while(true) {
+                while (true) {
                     $line = fgets($fp);
                     if (feof($fp)) {
                         break;
                     }
+                    $patrons[] = explode('|', $line); // [0]=last, [1]=first, [2]=email, [3]=city, [4]=birth
+                }
+                fclose($fp);
+
+                // Step 2: Sort by last name, then first name
+                usort($patrons, function($a, $b) {
+                    $result = strcasecmp($a[0], $b[0]); // compare last names
+                    if ($result == 0) {
+                        $result = strcasecmp($a[1], $b[1]); // same last name, so compare first names
+                    }
+                    return $result;
+                });
+
+                // Step 3: Build the table rows from the sorted array
+                $display = "";
+                $cntr = 0;
+
+                foreach ($patrons as $patron) {
+                    list($lastname, $firstname, $email, $city, $birth) = $patron;
+
                     $cntr++;
-                    $even_lines = $cntr % 2;
-                    if ($even_lines == 0) {
+                    if ($cntr % 2 == 0) {
                         $style = "style='background-color: #FFFFCC;'";
                     } else {
                         $style = "style='background-color: white;'";
                     }
-                    list($lastname, $firstname, $email, $city, $birth) = explode('|', $line);
 
                     $display .="<tr $style>";
                         $display .= "<td>".$lastname."</td>";
@@ -51,9 +70,7 @@
                         $display .= "<td>".$city."</td>";
                         $display .= "<td>".$birth."</td>";
                     $display .="</tr>\n";
-
                 }
-                fclose($fp);
 
                 print $display;
                 ?>
