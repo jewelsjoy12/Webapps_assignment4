@@ -19,7 +19,7 @@
 
             $firstname = $_POST ['firstname'];
             $lastname = $_POST ['lastname'];
-            $email = $_POST ['email']; 
+            $email = trim($_POST ['email']); // Rule 1: remove leading/trailing spaces
             $city = $_POST ['city'];
             $birth = $_POST ['birthday'];
             $section = 'unknown';
@@ -27,6 +27,59 @@
             ?>
 
             <?php //Check for errors
+
+            function validateEmail($email) {
+
+                // Rule 2: exactly one @
+                if (substr_count($email, '@') != 1) {
+                    print "Error: Email must contain exactly one @ symbol<br>\n";
+                    return 'Y';
+                }
+
+                list($local, $domain) = explode('@', $email);
+
+                // Rule 3: local part (before the @)
+                if ($local == '') {
+                    print "Error: Email must have something before the @<br>\n";
+                    return 'Y';
+                }
+                if (strlen($local) > 32) {
+                    print "Error: The part of your email before the @ cannot be longer than 32 characters<br>\n";
+                    return 'Y';
+                }
+                if (!preg_match('/^[A-Za-z0-9.!#]+$/', $local)) {
+                    print "Error: The part of your email before the @ may contain only letters, numbers, and . ! #<br>\n";
+                    return 'Y';
+                }
+
+                // Rule 4: domain part (after the @)
+                if ($domain == '') {
+                    print "Error: Email must have a domain after the @<br>\n";
+                    return 'Y';
+                }
+                if (strlen($domain) > 32) {
+                    print "Error: The part of your email after the @ cannot be longer than 32 characters<br>\n";
+                    return 'Y';
+                }
+                if (!preg_match('/^[A-Za-z0-9.-]+$/', $domain)) {
+                    print "Error: The part of your email after the @ may contain only letters, numbers, dashes, and periods<br>\n";
+                    return 'Y';
+                }
+
+                $lastDot = strrpos($domain, '.');
+                if ($lastDot === false || $lastDot == 0) {
+                    print "Error: Email domain must have a name and an ending, such as example.com<br>\n";
+                    return 'Y';
+                }
+
+                $tld = substr($domain, $lastDot + 1);
+                if (!preg_match('/^[A-Za-z]{2,}$/', $tld)) {
+                    print "Error: Email must end with at least two letters after the last period, such as .com<br>\n";
+                    return 'Y';
+                }
+
+                return 'N';   // passed every check
+            }
 
             function errorChecks ($firstname,$lastname,$email,$city,$birth){
                 
@@ -45,6 +98,10 @@
                 if (empty($email)) {
                     print "Error: You must enter your Email<br>\n";
                     $errorflag = 'Y';
+                } else {
+                    if (validateEmail($email) == 'Y') {
+                        $errorflag = 'Y';
+                    }
                 }
 
                 if (empty($birth)) {
