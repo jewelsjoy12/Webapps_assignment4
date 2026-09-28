@@ -29,9 +29,13 @@ main {
 
 #registration, .patron-view {
     background-color: #E6E6FA;
-    padding-left: 10px;
+    padding-left: 20px;
     padding-right: 50px;
     display: inline-block;
+}
+
+.patron-view {
+    padding-bottom: 20px;
 }
 
 #thanks {
