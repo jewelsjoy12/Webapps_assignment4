@@ -12,18 +12,22 @@
             <img src="KingLibLogo.jpg" alt="King Library: Where information is at your command">
         </div>
     </header>
+
     <main>
         <div id="registration">
-            <?php 
-                $firstname = $_POST ['firstname'];
-                $lastname = $_POST ['lastname'];
-                $email = $_POST ['email']; 
-                $city = $_POST ['city'];
-                $birth = $_POST ['birthday'];
-                $section = 'unknown';
+            <?php //Get form data
+
+            $firstname = $_POST ['firstname'];
+            $lastname = $_POST ['lastname'];
+            $email = $_POST ['email']; 
+            $city = $_POST ['city'];
+            $birth = $_POST ['birthday'];
+            $section = 'unknown';
+
             ?>
 
-            <?php 
+            <?php //Check for errors
+             
             $errorflag = 'N';
 
             if (empty($firstname)) {
@@ -44,8 +48,7 @@
             if (empty($birth)) {
                 print "Error: You must enter your Birth Year<br>\n";
                 $errorflag = 'Y';
-            } 
-            else {
+            } else {
                 if (!is_numeric($birth)) {
                     print "Error: Birth Year must be numeric<br>\n";
                     $errorflag = 'Y';
@@ -75,35 +78,44 @@
             }
             ?>
 
-            <?php 
-                $cur_year = date('Y');
-                $age = $cur_year - $birth;
+            <?php //Determine section by age
 
-                if ($age < 16) {
-                    $section = 'Children';
-                } elseif ($age > 54) {
-                    $section = 'Senior';
-                } else {
-                    $section = 'Adult';
-                }
+            $cur_year = date('Y');
+            $age = $cur_year - $birth;
+
+            if ($age < 16) {
+                $section = 'Children';
+            } elseif ($age > 54) {
+                $section = 'Senior';
+            } else {
+                $section = 'Adult';
+            }
+
             ?>
+
             <h1 id="thanks">Thank You for Registering!</h1>
-            <?php
-                print "<p>Name: ".$firstname.' '.$lastname."</p>\n";
-                print "<p>Email: $email</p>\n";
-                print "<p>City: $city</p>\n";
-                print "<p>Section: $section</p>\n";
+
+            <?php //Return registration info
+
+            print "<p>Name: ".$firstname.' '.$lastname."</p>\n";
+            print "<p>Email: $email</p>\n";
+            print "<p>City: $city</p>\n";
+            print "<p>Section: $section</p>\n";
+
             ?>
 
-            <?php 
-                $filename = 'patrons.txt';
-                $fp = fopen($filename, 'a');
+            <?php //Save data to file
 
-                $patron_data = $lastname.'|'.$firstname.'|'.$email.'|'.$city.'|'.$birth.'|'."\n";
+            $filename = 'patrons.txt';
+            $fp = fopen($filename, 'a');
 
-                fwrite($fp, $patron_data);
-                fclose($fp);
+            $patron_data = $lastname.'|'.$firstname.'|'.$email.'|'.$city.'|'.$birth.'|'."\n";
+
+            fwrite($fp, $patron_data);
+            fclose($fp);
+
             ?>
+
             <p>
                 For Admin Use Only: <span style="text-decoration: underline; color: blue;"><a href="asgn4_view_patrons_heltibridle.php">View Patrons</a></span>
             </p>
