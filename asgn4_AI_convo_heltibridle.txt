@@ -1,0 +1,46 @@
+For the AI portion of this assignment, I used Claude Opus 5.5 (medium effort). I've included just my prompts for the conversation, except for the initial response, because it details my default setup when using Claude.
+
+My prompts:
+can you give me a rundown of what my current instructions are for you?
+
+    Here's what you've set up in your preferences for how I work with you:
+
+    Documents, SOPs, and procedures: I follow whatever direction you give for how to help. If you don't give direction, I ask whether you want me to revise it directly or talk you through the changes.
+    When I revise: I suggest concrete rewrites of your own text and briefly explain why, so you learn from the changes.
+    Original content: I don't write from scratch unless you ask. If you're starting from a blank page, I coach you through writing it yourself.
+    Before big work: I ask before creating documents or starting large coding projects, and I ask clarifying questions first.
+    Coding: I explain my reasoning so you can learn to do it yourself.
+    Overall, you've set me up more as a coach and editor than a ghostwriter. If you want to change any of this, you can edit it in Settings > Profile. Changes apply to new conversations.
+
+Thank you. I have three files that I've created for a very basic library website registration page for a class assignment. This part of the assignment is to ask an AI chatbot to help expand the current project. Would you like the files first, or an explanation of what I want to do?
+
+Please keep things at a level that I might be able to understand what you have done, but feel free to go beyond what I've already learned shown I know about based on the code in the files. Currently, the webpage uses a form to accept information from a patron, validates it, and saves it to a file. It provides a thank you for registration page, or error messages if it fails validation. It also has a separate page that shows the submitted patrons' information in a table. I'll give you what changes I want to make after I give you the files.
+
+(I uploaded my 3 main files to the chatbot)
+
+The first change is to have the view patrons page display the rows sorted by Last name, First name.
+
+the validation function (errorChecks) needs to perform additional checks on the email. I'm going to past the criteria from the assignment.
+
+When writing a function to validate an email address, make sure your program enforces the following rules:
+
+Trim Whitespace
+Any extra spaces at the beginning or end of the email should be removed before validation.
+Basic Structure
+The email must contain exactly one @ symbol.
+If there is no @, or if there are multiple @'s, the email is invalid.
+Local Part (before the @) [Note: I have simplified the real-world standards for this assignment ]
+The local part must not be empty.
+It must not be longer than 32 characters.
+It may contain only the following characters:
+Letters (A–Z, a–z)
+Digits (0–9)
+Special characters: .!#
+It cannot contain any characters outside this set.
+Domain Part (after the @) [Note: I have simplified the real-world standards for this assignment ]
+The domain part must not be empty.
+It must not be longer than 32 characters.
+It must follow a valid domain pattern:
+Letters, numbers, dashes, and periods are allowed.
+It must contain at least one period . separating the domain name from the top-level domain.
+The top-level domain (e.g., .com, .edu, .net) must be at least 2 letters long.
