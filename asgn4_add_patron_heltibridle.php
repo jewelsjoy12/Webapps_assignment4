@@ -27,55 +27,62 @@
             ?>
 
             <?php //Check for errors
-             
-            $errorflag = 'N';
 
-            if (empty($firstname)) {
-                print "Error: You must enter a First Name <br>\n";
-                $errorflag = 'Y';
-            }
+            function errorChecks ($firstname,$lastname,$email,$city,$birth){
+                
+                $errorflag = 'N';
 
-            if (empty($lastname)) {
-                print "Error: You must enter a Last Name<br>\n";
-                $errorflag = 'Y';
-            }
+                if (empty($firstname)) {
+                    print "Error: You must enter a First Name <br>\n";
+                    $errorflag = 'Y';
+                }
 
-            if (empty($email)) {
-                print "Error: You must enter your Email<br>\n";
-                $errorflag = 'Y';
-            }
+                if (empty($lastname)) {
+                    print "Error: You must enter a Last Name<br>\n";
+                    $errorflag = 'Y';
+                }
 
-            if (empty($birth)) {
-                print "Error: You must enter your Birth Year<br>\n";
-                $errorflag = 'Y';
-            } else {
-                if (!is_numeric($birth)) {
-                    print "Error: Birth Year must be numeric<br>\n";
+                if (empty($email)) {
+                    print "Error: You must enter your Email<br>\n";
+                    $errorflag = 'Y';
+                }
+
+                if (empty($birth)) {
+                    print "Error: You must enter your Birth Year<br>\n";
                     $errorflag = 'Y';
                 } else {
-                    if (strlen($birth) !=4) {
-                        print "Your Birth Year must be exactly four numbers<br>\n";
+                    if (!is_numeric($birth)) {
+                        print "Error: Birth Year must be numeric<br>\n";
                         $errorflag = 'Y';
                     } else {
-                        if ($birth > 2026) {
-                            print "Error: Birth Year cannot be later than this year<br>\n";
+                        if (strlen($birth) !=4) {
+                            print "Error: Your Birth Year must be exactly four numbers<br>\n";
                             $errorflag = 'Y';
+                        } else {
+                            if ($birth > date('Y')) {
+                                print "Error: Birth Year cannot be later than this year<br>\n";
+                                $errorflag = 'Y';
+                            }
                         }
                     }
                 }
+
+                if (empty($city)) {
+                    print "Error: You must select a City<br>\n";
+                    $errorflag = 'Y';
+                }
+
+                return $errorflag;
             }
 
-            if (empty($city)) {
-                print "Error: You must select a City<br>\n";
-                $errorflag = 'Y';
-            }
-
+            $errorflag = errorChecks($firstname,$lastname,$email,$city,$birth);
 
             if ($errorflag == 'Y') {
                 print "<p>Go BACK and make corrections</p>\n";
                 print "</div></body></html>";
                 exit;
             }
+
             ?>
 
             <?php //Determine section by age
